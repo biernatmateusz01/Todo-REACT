@@ -39,6 +39,10 @@ const AddElement = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  background: transparent;
+  border: 2px solid gold;
+  color: gold;
+  font-size: 45px
 `;
 
 const HeadingText = styled.span`
@@ -51,38 +55,38 @@ export function TasksWrapper() {
   const [data, setData] = useState([
     {
       id: 1,
-      name: "Xd",
+      name: "Imię Nazwisko",
       desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     },
     {
       id: 2,
-      name: "Xd",
+      name: "Imię Nazwisko",
       desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     },
     {
       id: 3,
-      name: "Xd",
+      name: "Imię Nazwisko",
       desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     },
     {
       id: 4,
-      name: "Xd",
+      name: "Imię Nazwisko",
       desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     },
     {
       id: 5,
-      name: "Xd",
+      name: "Imię Nazwisko",
       desc: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
     },
     {
       id: 6,
-      name: "Xd",
+      name: "Imię Nazwisko",
       desc: "Lorem ipsum dolor",
       done: true,
     },
     {
       id: 7,
-      name: "Xd",
+      name: "Imię Nazwisko",
       desc: "Lorem ipsum dolor",
     },
   ]);
@@ -92,25 +96,6 @@ export function TasksWrapper() {
   function handleShow() {
     setFormShown(true);
   }
-
-  // function deleteElement(task) {
-  //   const idForDelete = task.id;
-
-  //   const index = data.findIndex((item) => item.id === idForDelete);
-
-  //   if (index !== -1) {
-  //     data.splice(index, 1);
-  //   }
-
-  //   setData((prevData) => {
-  //     return [
-  //       {
-  //         data,
-  //       },
-  //     ];
-  //   });
-  //   console.log(data);
-  // }
 
   return (
     <>
@@ -122,7 +107,7 @@ export function TasksWrapper() {
               newTask.preventDefault;
               setData((prevTasks) => [
                 ...prevTasks,
-                { id: iterator++, name: "xd", desc: newTask },
+                { id: iterator++, name: "Imię Nazwisko", desc: newTask },
               ]);
               setFormShown(false);
             }}
@@ -136,13 +121,22 @@ export function TasksWrapper() {
             <TaskItem
               key={task.id}
               task={task}
-              // getData={getData(task)}
-              // onClick={() => {
-              //   deleteElement(task);
-              // }}
+              onDoneButtonClick={
+                () => {
+                  setData((prevData) => prevData.map(el => {
+                    if(el.id != task.id){
+                      return el
+                    }
+                    return{
+                      ...el,
+                      done: true
+                    }
+                  }))
+                }
+              }
             />
           ))}
-          {!isFormShown && <AddElement onClick={handleShow}></AddElement>}
+          {!isFormShown && <AddElement onClick={handleShow}>+</AddElement>}
         </WrapperView>
       </Container>
     </>

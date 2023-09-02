@@ -55,14 +55,14 @@ const MadeView = styled.div`
   border: 2px solid gold;
 `;
 
-export function TaskItem({ task, onClick }) {
+export function TaskItem({ task, onDoneButtonClick }) {
   return (
     <>
       <TaskView>
         <div>
           <ImageContainer>
             <Image
-              onClick={onClick}
+              // onClick={onClick}
               src="https://images.pexels.com/photos/614810/pexels-photo-614810.jpeg?cs=srgb&dl=pexels-simon-robben-614810.jpg&fm=jpg"
               alt=""
             />
@@ -75,6 +75,7 @@ export function TaskItem({ task, onClick }) {
         <ActionsContainer>
           {" "}
           <>{task.done ? <MadeView>Zrobione</MadeView> : ""}</>
+          <ButtonView onClick={onDoneButtonClick}>zrobione</ButtonView>
           {/* <div>{!task.done ? <ButtonView>Zrób</ButtonView> : ""}</div> */}
         </ActionsContainer>
       </TaskView>
