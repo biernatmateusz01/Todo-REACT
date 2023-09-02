@@ -27,8 +27,8 @@ const WrapperView = styled.ul`
 `;
 
 const AddElement = styled.button`
-  position: absolute;
-  bottom: 2px;
+  position: fixed;
+  bottom: 5px;
   right: 5px;
   cursor: pointer;
   height: 40px;
@@ -39,7 +39,7 @@ const AddElement = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: transparent;
+  background: black;
   border: 2px solid gold;
   color: gold;
   font-size: 45px
