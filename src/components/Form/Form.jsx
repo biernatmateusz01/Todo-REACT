@@ -47,15 +47,14 @@ export function Form({ showValue, onFormSubmit }) {
     "Lorem ipsum dolor, sit amet."
   );
 
-  console.log(textareaValue)
-
-
   return (
-    <form onSubmit={(event) => {
-      event.preventDefault;
+    <form
+      onSubmit={(event) => {
+        event.preventDefault;
 
-      onFormSubmit(textareaValue)
-    }}>
+        onFormSubmit(textareaValue);
+      }}
+    >
       <Container style={showValue ? { transform: `translate(0)` } : ""}>
         <InputView
           onChange={(event) => {
@@ -66,9 +65,7 @@ export function Form({ showValue, onFormSubmit }) {
           name="text"
           id="text"
         />
-        <ButtonView type={"submit"}>
-          Dodaj
-        </ButtonView>
+        {textareaValue && <ButtonView type={"submit"}>Dodaj</ButtonView>}
       </Container>
     </form>
   );

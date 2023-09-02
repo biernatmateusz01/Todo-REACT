@@ -42,7 +42,7 @@ const AddElement = styled.button`
   background: black;
   border: 2px solid gold;
   color: gold;
-  font-size: 45px
+  font-size: 45px;
 `;
 
 const HeadingText = styled.span`
@@ -97,6 +97,33 @@ export function TasksWrapper() {
     setFormShown(true);
   }
 
+  function markDone(task) {
+    setData((prevData) =>
+      prevData.map((el) => {
+        if (el.id != task.id) {
+          return el;
+        }
+        return {
+          ...el,
+          done: true,
+        };
+      })
+    );
+  }
+
+  function addNewTask(newTask) {
+    newTask.preventDefault;
+    setData((prevTasks) => [
+      ...prevTasks,
+      { id: iterator++, name: "Imię Nazwisko", desc: newTask },
+    ]);
+    setFormShown(false);
+  }
+
+  function deleteItem(id) {
+    setData((prevTodos) => prevTodos.filter((todo) => todo.id !== id));
+  }
+
   return (
     <>
       <Container>
@@ -104,12 +131,7 @@ export function TasksWrapper() {
           <Form
             showValue={isFormShown}
             onFormSubmit={(newTask) => {
-              newTask.preventDefault;
-              setData((prevTasks) => [
-                ...prevTasks,
-                { id: iterator++, name: "Imię Nazwisko", desc: newTask },
-              ]);
-              setFormShown(false);
+              addNewTask(newTask);
             }}
           />
         ) : (
@@ -121,19 +143,12 @@ export function TasksWrapper() {
             <TaskItem
               key={task.id}
               task={task}
-              onDoneButtonClick={
-                () => {
-                  setData((prevData) => prevData.map(el => {
-                    if(el.id != task.id){
-                      return el
-                    }
-                    return{
-                      ...el,
-                      done: true
-                    }
-                  }))
-                }
-              }
+              onDeleteButtonClick={() => {
+                deleteItem(task.id);
+              }}
+              onDoneButtonClick={() => {
+                markDone(task);
+              }}
             />
           ))}
           {!isFormShown && <AddElement onClick={handleShow}>+</AddElement>}

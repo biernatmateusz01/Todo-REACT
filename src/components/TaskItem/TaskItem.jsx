@@ -55,7 +55,7 @@ const MadeView = styled.div`
   border: 2px solid gold;
 `;
 
-export function TaskItem({ task, onDoneButtonClick }) {
+export function TaskItem({ task, onDoneButtonClick, onDeleteButtonClick }) {
   return (
     <>
       <TaskView>
@@ -76,6 +76,8 @@ export function TaskItem({ task, onDoneButtonClick }) {
           {" "}
           <>{task.done ? <MadeView>Zrobione</MadeView> : ""}</>
           <ButtonView onClick={onDoneButtonClick}>zrobione</ButtonView>
+          <ButtonView onClick={onDeleteButtonClick}>usuń</ButtonView>
+
           {/* <div>{!task.done ? <ButtonView>Zrób</ButtonView> : ""}</div> */}
         </ActionsContainer>
       </TaskView>
